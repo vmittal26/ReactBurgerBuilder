@@ -2,4 +2,4 @@
 
 This is the boiler plate configured to bootstrap react
 application using webpack v4, It also includes color customisation of
-bootstrap v4 , refer sass folder for more details
+bootstrap v4 , refer src/sass folder for more details
