@@ -1,6 +1,9 @@
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
-
 $theme-colors: (
-  primary:#fd7e14
+  primary:#f08e4a,
+  secondary:darken(#f08e4a,20%)
 );
+
+$primary-color:#f08e4a;
+$secondary-color:darken(#f08e4a,20%);

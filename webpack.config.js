@@ -21,19 +21,21 @@ module.exports = {
       },
       {
         test: /\.(s*)css$/,
+        exclude: /node_modules/,
         use: [
-          {
-            loader: "style-loader"
-          },
+          devMode ? "style-loader" : MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
               modules: true,
-              localIdentName: "[name]__[local]"
+              localIdentName: "[local]"
             }
           },
           {
-            loader: "sass-loader"
+            loader: "sass-loader",
+            options: {
+              includePaths: ["absolute/path/a", "absolute/path/b"]
+            }
           }
         ]
       }
@@ -47,5 +49,6 @@ module.exports = {
       chunkFilename: "[id].css"
     }),
     new HtmlWebpackPlugin({ template: "./src/index.html" })
-  ]
+  ],
+  devtool: 'cheap-module-eval-source-map'
 };

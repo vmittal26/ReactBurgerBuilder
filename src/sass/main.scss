@@ -1,2 +1,6 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
+@import "../components/Burger/Burger.scss";
+@import "../components/Burger/BurgerIngredient/BurgerIngredient.scss";
+@import "../components/BuildControls/BuildControls.scss";
+@import "../components/BuildControls/BuildControl/BuildControl.scss";

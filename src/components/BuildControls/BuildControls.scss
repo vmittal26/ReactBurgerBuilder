@@ -1,0 +1,15 @@
+.BuildControls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  justify-content: space-between;
+  background-color: lighten($primary-color, 10%);
+}
+
+.Label {
+  padding: 10px;
+  font-weight: bold;
+  width: 80px;
+}

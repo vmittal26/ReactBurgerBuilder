@@ -1,0 +1,22 @@
+.BuildControl {
+  display: flex;
+  margin: 0.5rem;
+  font-size: 1rem;
+
+  &__button {
+    padding: 0.5rem 3rem;
+    margin-left: 0.5rem;
+    font-size: inherit;
+    @extend .btn;
+    @extend .btn-lg;
+    @extend .text-white;
+
+    &--more {
+      @extend .btn-primary;
+    }
+
+    &--less {
+      @extend .btn-secondary;
+    }
+  }
+}
