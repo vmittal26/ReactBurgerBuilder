@@ -2,7 +2,6 @@ import React from "react";
 
 // import styles from "./BuildControls.scss";
 import BuildControl from "./BuildControl/BuildControl";
-import Modal from "../UI/Modal/Modal";
 
 const controls = [
   { label: "Salad", type: "salad" },
@@ -26,8 +25,7 @@ const BuildControls = props => {
           type={type}
         />
       ))}
-      <button data-toggle="modal" data-target="#exampleModal" className={classesOrderNowButton}>ORDER NOW</button>
-      <Modal />
+      <button onClick = {props.purchaseHandler} className={classesOrderNowButton}>ORDER NOW</button>
     </div>
   );
 };
