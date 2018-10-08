@@ -6,10 +6,12 @@
   padding: 1rem 0;
   justify-content: space-between;
   background-color: lighten($primary-color, 10%);
+
+  &__orderNowButton{
+    @extend .btn;
+    @extend .btn-secondary;
+    @extend .text-white;
+    padding: 0.5rem 2rem;
+  }
 }
 
-.Label {
-  padding: 10px;
-  font-weight: bold;
-  width: 80px;
-}

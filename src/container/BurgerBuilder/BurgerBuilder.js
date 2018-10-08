@@ -3,6 +3,13 @@ import ElementsWrapper from "../../hoc/ElementsWrapper";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/BuildControls/BuildControls";
 
+const INGREDIENT_PRICES = {
+  salad: 0.5,
+  cheese: 0.4,
+  meat: 1.3,
+  bacon: 0.7
+};
+
 class BurgerBuilder extends Component {
   constructor(props) {
     super(props);
@@ -12,23 +19,37 @@ class BurgerBuilder extends Component {
         bacon: 0,
         cheese: 0,
         meat: 0
-      }
+      },
+      totalPrice: 4
     };
 
     this.addIngredientHandler = type => {
-      const upgradedIngredients = {
-        ...this.state.ingredients,
-        [type]: this.state.ingredients[type] + 1
+      const updatedState = {
+        ingredients: {
+          ...this.state.ingredients,
+          [type]: this.state.ingredients[type] + 1
+        },
+        totalPrice: INGREDIENT_PRICES[type] + this.state.totalPrice
       };
-      this.setState({ ingredients: upgradedIngredients });
+
+      this.setState(updatedState);
     };
 
-    this.removeIngredientHandler = (type) => {
-      const upgradedIngredients = {
-        ...this.state.ingredients,
-        [type]: this.state.ingredients[type]>0 ? this.state.ingredients[type] - 1:0
+    this.removeIngredientHandler = type => {
+      const updatedState ={
+        ingredients: {
+          ...this.state.ingredients,
+          [type]:  this.state.ingredients[type] > 0 ? this.state.ingredients[type] - 1 : 0
+        },
+        totalPrice:this.state.totalPrice - INGREDIENT_PRICES[type]
       };
-      this.setState({ ingredients: upgradedIngredients });
+    
+      this.setState(updatedState);
+    };
+
+    this.disableStateCheckHandler = type => {
+      const disabled = this.state.ingredients[type] === 0;
+      return disabled;
     };
   }
 
@@ -39,6 +60,8 @@ class BurgerBuilder extends Component {
         <BuildControls
           addIngredientHandler={this.addIngredientHandler}
           removeIngredientHandler={this.removeIngredientHandler}
+          disableStateCheckHandler={this.disableStateCheckHandler}
+          totalPrice={this.state.totalPrice.toFixed(2)}
         />
       </ElementsWrapper>
     );
