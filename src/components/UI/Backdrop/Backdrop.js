@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 const Backdrop = (props) => (
-      <div className="Backdrop" onClick ={props.showHideHandler}></div>
+      props.show ? <div className="Backdrop" onClick ={props.onBackdropClick}></div> :null
 );
 
 export default Backdrop;

@@ -10,6 +10,10 @@ const OrderSummary = (props) => (
                     <li className="list-group-item" key = {key} >{key} : {props.ingredients[key]}</li>
                 )}
         </ul>
+        <p className ="font-weight-bold pt-2">Total Price : {props.totalPrice}</p>
+        <p>Continue to checkout ?</p>
+        <button className="btn btn-primary" onClick = {props.onCancelOrder}>Cancel</button>
+        <button className="btn btn-secondary ml-1" onClick = {props.onContinueCheckout}>Continue</button>
     </ElementsWrapper>
 );
 

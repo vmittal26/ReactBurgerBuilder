@@ -4,7 +4,7 @@ import ElementsWrapper from "../../../hoc/ElementsWrapper";
 
 const Modal = props => (
   <ElementsWrapper>
-    {this.props.show ? <Backdrop /> : null}
+    <Backdrop show ={props.purchasing} onBackdropClick = {props.onBackdropClick}/>
     <div
       className="Modal"
       style={{

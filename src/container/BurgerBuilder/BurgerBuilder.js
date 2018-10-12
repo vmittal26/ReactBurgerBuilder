@@ -23,16 +23,16 @@ class BurgerBuilder extends Component {
         meat: 0
       },
       totalPrice: 4,
-      purchasing:false
+      purchasing: false
     };
 
-    this.purchaseHandler = () =>{
+    this.purchaseHandler = () => {
       const updatedState = {
         ...this.state,
-        purchasing:true
+        purchasing: true
       };
       this.setState(updatedState);
-    }
+    };
     this.addIngredientHandler = type => {
       const updatedState = {
         ingredients: {
@@ -46,14 +46,17 @@ class BurgerBuilder extends Component {
     };
 
     this.removeIngredientHandler = type => {
-      const updatedState ={
+      const updatedState = {
         ingredients: {
           ...this.state.ingredients,
-          [type]:  this.state.ingredients[type] > 0 ? this.state.ingredients[type] - 1 : 0
+          [type]:
+            this.state.ingredients[type] > 0
+              ? this.state.ingredients[type] - 1
+              : 0
         },
-        totalPrice:this.state.totalPrice - INGREDIENT_PRICES[type]
+        totalPrice: this.state.totalPrice - INGREDIENT_PRICES[type]
       };
-    
+
       this.setState(updatedState);
     };
 
@@ -62,27 +65,39 @@ class BurgerBuilder extends Component {
       return disabled;
     };
 
-    this.showHideHandler = ()=>{
-      this.setState({purchasing:false});
-    }
+    this.onBackdropClick = () => {
+      this.setState({ purchasing: false });
+    };
+
+    this.onContinueCheckout = () => {
+      alert("Continue to checkout");
+    };
   }
 
-  
   render() {
     return (
-      <ElementsWrapper>
+      <div className="BurgerBuilder">
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           addIngredientHandler={this.addIngredientHandler}
           removeIngredientHandler={this.removeIngredientHandler}
           disableStateCheckHandler={this.disableStateCheckHandler}
           totalPrice={this.state.totalPrice.toFixed(2)}
-          purchaseHandler = {this.purchaseHandler}
+          purchasing = {this.state.totalPrice>4}
+          purchaseHandler={this.purchaseHandler}
         />
-       <Modal purchasing={this.state.purchasing} showHideHandler={this.showHideHandler} >
-        <OrderSummary ingredients = {this.state.ingredients}/>
-       </Modal>
-      </ElementsWrapper>
+        <Modal
+          purchasing={this.state.purchasing}
+          onBackdropClick={this.onBackdropClick}
+        >
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            onCancelOrder={this.onBackdropClick}
+            onContinueCheckout={this.onContinueCheckout}
+            totalPrice = {this.state.totalPrice.toFixed(2)}
+          />
+        </Modal>
+      </div>
     );
   }
 }

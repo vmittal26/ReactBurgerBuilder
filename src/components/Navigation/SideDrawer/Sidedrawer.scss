@@ -1,0 +1,18 @@
+.Sidedrawer{
+    position: fixed;
+    z-index: 200;
+    width: 20vw;
+    height: 100vh;
+    transition: transform 0.3s ease-in-out;
+    top:0;
+    left:0;
+    background-color: white;
+
+    &__Open{
+        transform: translateX(0);
+    }
+
+    &__Closed{
+        transform: translateX(-100%);
+    }
+}

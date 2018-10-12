@@ -1,7 +1,11 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
+@import "../components/Logo/Logo.scss";
+@import "../components/Navigation/SideDrawer/Sidedrawer.scss";
 @import "../components/UI/Backdrop/Backdrop.scss";
+@import "../components/Navigation/Toolbar/Toolbar.scss";
 @import "../components/UI/Modal/Modal.scss";
+@import "../container/BurgerBuilder/BurgerBuilder.scss";
 @import "../components/Burger/Burger.scss";
 @import "../components/Burger/BurgerIngredient/BurgerIngredient.scss";
 @import "../components/BuildControls/BuildControls.scss";
