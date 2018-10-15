@@ -1,6 +1,8 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 @import "../components/Logo/Logo.scss";
+@import "../components/UI/Spinner/Spinner.css";
+@import "../components/Navigation/SideDrawer/SideDrawerToggler/SideDrawerToggler.scss";
 @import "../components/Navigation/SideDrawer/Sidedrawer.scss";
 @import "../components/UI/Backdrop/Backdrop.scss";
 @import "../components/Navigation/Toolbar/Toolbar.scss";

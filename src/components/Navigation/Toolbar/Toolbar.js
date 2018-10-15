@@ -1,10 +1,11 @@
 import React from 'react';
 import Logo from "../../Logo/Logo";
+import SideDrawerToggler from '../SideDrawer/SideDrawerToggler/SideDrawerToggler';
 
 const Toolbar = (props) => (
         <header className="Toolbar">
             <Logo />
-            <button className="btn btn-secondary" onClick ={props.toggleHandler}>MENU</button>
+            <SideDrawerToggler clicked = {props.toggleHandler}/>
         </header>
 );
 
