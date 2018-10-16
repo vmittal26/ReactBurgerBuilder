@@ -4,12 +4,12 @@ import ElementsWrapper from "../../../hoc/ElementsWrapper";
 
 const Modal = props => (
   <ElementsWrapper>
-    <Backdrop show ={props.purchasing} onBackdropClick = {props.onBackdropClick}/>
+    <Backdrop show ={props.show} onBackdropClick = {props.onBackdropClick}/>
     <div
       className="Modal"
       style={{
-        transform: props.purchasing ? "translateY(0)" : "translateY(-100vh)",
-        opacity: props.purchasing ? "1" : "0"
+        transform: props.show ? "translateY(0)" : "translateY(-100vh)",
+        opacity: props.show ? "1" : "0"
       }}
     >
       {props.children}
