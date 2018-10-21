@@ -14,7 +14,8 @@ export default class Contactdata extends Component {
       this.setState({ loading: true });
 
       const order = {
-        ...this.props,
+        ingredients:this.props.ingredients,
+        price : this.props.price,
         customer: {
           name: "Vaibhav Mittal",
           adress: {

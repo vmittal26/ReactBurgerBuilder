@@ -1,10 +1,20 @@
 import React from 'react'
 
-const order = (props) => {
+const order = ({ingredients,price}) => {
+    let addIngredients=(ingredients)=>{
+         let ingredientItems=[];
+            for(let key in ingredients){
+                ingredientItems
+                .push(<span key ={key}className="badge"> {key.toUpperCase()} : {ingredients[key]}</span>)
+            }
+        
+        return ingredientItems;
+    }
+
     return(
         <div className="Order">
-            <p> Ingredients: Salad (1)</p>
-            <p> Price: <strong>USD 5.8</strong></p>
+            <p>{addIngredients(ingredients)}</p>
+            <p className="badge"> Price: <strong >{price}</strong></p>
         </div>
     )
 }
