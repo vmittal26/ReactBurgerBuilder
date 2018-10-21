@@ -1,5 +1,7 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
+@import "mixins";
+@import "base";
 @import "../components/Logo/Logo.scss";
 @import "../components/UI/Spinner/Spinner.css";
 @import "../components/Navigation/SideDrawer/SideDrawerToggler/SideDrawerToggler.scss";
@@ -12,3 +14,8 @@
 @import "../components/Burger/BurgerIngredient/BurgerIngredient.scss";
 @import "../components/BuildControls/BuildControls.scss";
 @import "../components/BuildControls/BuildControl/BuildControl.scss";
+@import "../container/Checkout/Checkout.scss";
+@import "../components/Order/CheckoutSummary/CheckoutSummary.scss";
+@import "../container/Checkout/Contactdata/Contactdata.scss";
+@import "../components/Order/Order.scss";
+@import "../container/Orders/Orders.scss";

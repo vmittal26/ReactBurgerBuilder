@@ -1,0 +1,7 @@
+@mixin btn-default() {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .text-white;
+    padding: 0.5rem 2rem;
+    text-transform:uppercase;
+}
