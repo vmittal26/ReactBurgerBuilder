@@ -29,7 +29,7 @@ class BurgerBuilder extends Component {
       loading: false
     };
 
-    this.purchaseHandler = () => {
+    this.purchaseHandler = () => { 
       this.setState({ purchasing: true });
     };
     this.addIngredientHandler = type => {

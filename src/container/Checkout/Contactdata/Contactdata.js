@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios_instance from "../../../axios_order";
 import Spinner from "../../../components/UI/Spinner/Spinner";
+import ContactForm from "./ContactForm";
 
 export default class Contactdata extends Component {
   constructor(props) {
@@ -9,26 +10,17 @@ export default class Contactdata extends Component {
     this.state={
       loading:false
     }
-    this.onOrderSubmit = event => {
-      event.preventDefault();
+    this.onOrderSubmit = (formData) => {
       this.setState({ loading: true });
 
       const order = {
         ingredients:this.props.ingredients,
         price : this.props.price,
         customer: {
-          name: "Vaibhav Mittal",
-          adress: {
-            flat: "C 202",
-            address1: "Prateek Wisteria",
-            address2: "Sector 77",
-            pincode: 201301,
-            city: "Noida",
-            country: "India"
-          },
-          email: "vaibhavmittal.26@gmai.com"
-        },
-        deliveryMethod: "fastest"
+          name: formData.name,
+          adress: formData.address,
+          email: formData.email
+        }
       };
       axios_instance
         .post("/orders.json", order)
@@ -47,24 +39,7 @@ export default class Contactdata extends Component {
   render() {
 
     let form = (
-      <form onSubmit={this.onOrderSubmit} className="form-group">
-      <input type="text" className="form-control" placeholder="Name" />
-      <input type="email" className="form-control" placeholder="Email" />
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Address Line1"
-      />
-      <input
-        type="text"
-        className="form-control"
-        placeholder="Address Line2"
-      />
-      <input type="text" className="form-control" placeholder="Zip Code" />
-      <button type="submit" className="button-primary mt-1">
-        Order
-      </button>
-    </form>
+     <ContactForm onSubmit = {(this.onOrderSubmit)}/>
     );
     if(this.state.loading){
       form=<Spinner />
