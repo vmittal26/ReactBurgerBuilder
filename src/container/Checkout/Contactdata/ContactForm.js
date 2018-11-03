@@ -7,23 +7,24 @@ let onSubmit;
 const contactForm = (props) => {
   onSubmit = props.onSubmit;
   const { errors ,touched } = props;
+  const errorClassName = 'text-left text-danger text-uppercase';
   return(
     <Form className="form-group">
       <div>
-          {touched.name && errors.name && <div className={'text-left text-danger text-uppercase '}>{errors.name}</div>}
+          {touched.name && errors.name && <div className={errorClassName}>{errors.name}</div>}
           <Field type="text" name="name" className="form-control" placeholder="Name" />
       </div>
       <div>
-          {touched.email &&errors.email && <div className={'text-left text-danger text-uppercase '}>{errors.email}</div>}
+          {touched.email &&errors.email && <div className={errorClassName}>{errors.email}</div>}
           <Field type="email" name="email" className="form-control" placeholder="Email" />
       </div>
       <div>
-        {touched.address1 && errors.address1 && <div className={'text-left text-danger text-uppercase '}>{errors.address1}</div>}
+        {touched.address1 && errors.address1 && <div className={errorClassName}>{errors.address1}</div>}
         <Field type="text" name="address1" className="form-control" placeholder="Address Line1" />
       </div>
       <Field type="text" name="address2" className="form-control" placeholder="Address Line2" />
        <div>
-        {touched.zip && errors.zip && <div className={'text-left text-danger text-uppercase '}>{errors.zip}</div>}
+        {touched.zip && errors.zip && <div className={errorClassName}>{errors.zip}</div>}
         <Field type="text" name="zip" className="form-control" placeholder="Zip Code" />
         </div>
       <button type="submit" className="button-primary mt-1"> Order </button>

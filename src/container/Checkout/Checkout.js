@@ -13,31 +13,24 @@ export default class Checkout extends Component {
     };
 
     this.checkoutContinuedHandler = () => {
-      this.props.history.replace("/checkout/contact-data");
+      this.props.history.push("/checkout/contact-data");
     };
   }
   componentWillMount() {
-    this.setState({ ...this.props.location.state });
+    this.props.location.state ?  this.setState({ ...this.props.location.state }) : this.props.history.replace("/");
   }
   render() {
-    return (
-      <div className="Checkout">
+    let checkoutPage = null;
+    if(this.state.ingredients){
+      checkoutPage = (
+        <div className="Checkout">
         <CheckoutSummary {...this.state} />
-        <button
-          className="btn btn-secondary px-4 py-2"
-          onClick={this.checkOutCancelHandler}>
-          CANCEL
-        </button>
-        <button
-          className="btn btn-primary px-4 py-2 ml-1"
-          onClick={this.checkoutContinuedHandler}>
-          Continue
-        </button>
-        <Route
-          path={this.props.match.path + "/contact-data"}
-          render={() => <Contactdata {...this.state} {...this.props}/>}
-        />
+        <button className="btn btn-secondary px-4 py-2" onClick={this.checkOutCancelHandler}> CANCEL </button>
+        <button className="btn btn-primary px-4 py-2 ml-1" onClick={this.checkoutContinuedHandler}> Continue </button>
+        <Route path={this.props.match.path + "/contact-data"} render={() => <Contactdata {...this.state} {...this.props}/>} />
       </div>
-    );
+      );
+    }
+    return checkoutPage;
   }
 }
