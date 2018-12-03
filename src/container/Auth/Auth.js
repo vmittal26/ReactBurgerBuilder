@@ -3,27 +3,39 @@ import { withFormik , Form , Field } from 'formik';
 import * as yup from 'yup';
 import * as actions from "./actions";
 import { connect } from "react-redux";
-import axios from 'axios';
+import Spinner from "../../components/UI/Spinner/Spinner";
  
 let onSubmit = null;
 export class Auth extends Component {
 
     constructor(props){
         super(props);
+        this.state={
+            isSignup:false
+        }
         onSubmit = (values)=>{
             console.log(values);
-            this.props.onAuth(values.email,values.password);
-      }
+            this.props.onAuth(values.email,values.password,this.state.isSignup);
+        }
+
+        this.switchAuthModeHandler = ()=>{
+            this.setState(prevstate=>{
+                return {
+                    isSignup :!prevstate.isSignup
+                };
+            })
+        }
     }
  
   render() {
     const { errors ,touched } = this.props;
     const errorClassName = 'text-left text-danger text-uppercase';
-    return (
-        <div className="card mr-auto ml-auto" style={{width: '60%',marginTop:'6rem'}}>
-         <div className="card-header">
-              Sign Up
-        </div>
+    let spinner = <Spinner />;
+    let form = (  
+            <div className="card mr-auto ml-auto" style={{width: '60%',marginTop:'6rem'}}>
+                <div className="card-header">
+                    Sign Up
+                </div>
             <div className="card-body" >
             <Form >
                 <div className="form-group">
@@ -34,19 +46,26 @@ export class Auth extends Component {
                     {touched.password && errors.password && <div className={errorClassName}>{errors.password}</div>}
                     <Field type="password" name="password" className="form-control" placeholder="Password" />
                 </div>
-                <button type="submit" className="button-primary mt-1 d-block m-auto"> Submit </button>
-           </Form>
-        </div>
-      </div>
-    );
+                <button type="submit" className="button-primary d-block m-auto"> {this.state.isSignup ? 'Sign Up' : 'Sign In'} </button>
+            </Form>
+            <button onClick = {this.switchAuthModeHandler} className="d-block m-auto btn btn-link">{!this.state.isSignup? 'Do not have an account , switch to Sign Up':'Already have an account , switch to Sign In'}</button>
+            </div>
+        </div>);
+         return  this.props.loading ? spinner : form;
   }
 }
 
+const mapStateToProps=(state)=>{
+       return{
+           loading:state.auth.loading,
+           error : state.auth.error
+       }
+}
 const mapDispatchToProps = dispatch => {
     return {
-      onAuth: (email,password) => dispatch(actions.auth(email,password))
+      onAuth: (email,password, isSignup) => dispatch(actions.auth(email,password,isSignup))
     };
-  };
+};
 
 
 
@@ -64,4 +83,4 @@ export default withFormik({
     handleSubmit(values){
         onSubmit(values);
     }
-})(connect( null, mapDispatchToProps )(Auth));
+})(connect( mapStateToProps, mapDispatchToProps )(Auth));

@@ -5,7 +5,6 @@ import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import axios_instance from "../../axios_order";
 import Spinner from "../../components/UI/Spinner/Spinner";
-import ElementsWrapper from "../../hoc/ElementsWrapper";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { connect } from "react-redux";
 import * as actions from "./actions";
@@ -53,7 +52,7 @@ class BurgerBuilder extends Component {
 
     if (this.props.ingredients && this.props.totalPrice ) {
       burger = (
-        <ElementsWrapper>
+        <React.Fragment>
           <Burger ingredients={this.props.ingredients} />
           <BuildControls
             addIngredientHandler={this.props.onIngredientAdded}
@@ -63,7 +62,7 @@ class BurgerBuilder extends Component {
             purchasing={this.props.totalPrice > 4}
             purchaseHandler={this.purchaseHandler}
           />
-        </ElementsWrapper>
+        </React.Fragment>
       );
       if (!this.state.loading) {
         orderSummary = (
@@ -87,8 +86,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ingredients: state.ingredients,
-    totalPrice: state.totalPrice 
+    ingredients: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice 
   };
 };
 const mapDispatchToProps = dispatch => {
