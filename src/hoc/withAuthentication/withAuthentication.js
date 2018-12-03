@@ -1,16 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 
-const withAuthentication = (props) => {
-
-    let isAuthenticated = props.isAuthenticated;
-
-    return class withAuthentication extends Component {
-
+const withAuthentication = (WrappedComponent) => {
+    return class extends Component {
         render() {
-            return isAuthenticated ? <props.component { ...this.props } /> : null;
-          }
-  
+            return props.isAuthenticated ? <WrappedComponent { ...this.props } /> : null;
+        }
     }
 }
 

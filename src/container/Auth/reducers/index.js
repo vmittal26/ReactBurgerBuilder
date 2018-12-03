@@ -36,7 +36,7 @@ function authFail(state, action) {
     ...state,
     error: action.error,
     loading: false,
-    isAuthenticated:true
+    isAuthenticated:false
   };
 }
 
@@ -46,6 +46,7 @@ function authSuccess(state, action) {
     token: action.idToken,
     userId: action.localId,
     error: null,
-    loading: false
+    loading: false,
+    isAuthenticated :true
   };
 }

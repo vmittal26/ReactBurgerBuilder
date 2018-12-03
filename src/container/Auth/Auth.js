@@ -13,17 +13,22 @@ export class Auth extends Component {
         this.state={
             isSignup:false
         }
-        onSubmit = (values)=>{
-            console.log(values);
-            this.props.onAuth(values.email,values.password,this.state.isSignup);
+      
+        this.isAuthenticated = ()=>{
+            if(this.props.isAuthenticated){
+                this.props.history.push("/burgerBuilder");
+            }
         }
-
         this.switchAuthModeHandler = ()=>{
             this.setState(prevstate=>{
                 return {
                     isSignup :!prevstate.isSignup
                 };
             })
+        }
+        onSubmit = (values)=>{
+            console.log(values);
+            this.props.onAuth(values.email,values.password,this.state.isSignup, this.isAuthenticated);
         }
     }
  
@@ -58,12 +63,13 @@ export class Auth extends Component {
 const mapStateToProps=(state)=>{
        return{
            loading:state.auth.loading,
-           error : state.auth.error
+           error : state.auth.error,
+           isAuthenticated: state.auth.isAuthenticated
        }
 }
 const mapDispatchToProps = dispatch => {
     return {
-      onAuth: (email,password, isSignup) => dispatch(actions.auth(email,password,isSignup))
+      onAuth: (email,password, isSignup ,isAuthenticated) => dispatch(actions.auth(email,password,isSignup ,isAuthenticated))
     };
 };
 

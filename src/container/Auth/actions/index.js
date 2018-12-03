@@ -23,7 +23,7 @@ export const authSuccess = (idToken,localId) =>{
      }
  }
 
- export const auth = (email,password,isSignup)=>{
+ export const auth = (email,password,isSignup,isAuthenticated)=>{
 
     return dispatch=>{
          dispatch(authStart());
@@ -40,6 +40,7 @@ export const authSuccess = (idToken,localId) =>{
                .then(response=>{
                    console.log(response);
                    dispatch(authSuccess(response.data.idToken , response.data.localId));
+                   isAuthenticated();
                })
                .catch((error)=>{
                    console.log(error);

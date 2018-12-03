@@ -15,6 +15,9 @@ class BurgerBuilder extends Component {
     super(props);
     // this.initialIngredients = null;
 
+    if(!this.props.isAuthenticated){
+        this.props.history.replace("/");
+    }
     this.state = {
       ingredients: this.props.ingredients,
       totalPrice: this.props.totalPrice,
@@ -87,7 +90,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilder.ingredients,
-    totalPrice: state.burgerBuilder.totalPrice 
+    totalPrice: state.burgerBuilder.totalPrice,
+    isAuthenticated: state.auth.isAuthenticated
   };
 };
 const mapDispatchToProps = dispatch => {
