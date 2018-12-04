@@ -6,6 +6,7 @@ const Toolbar = (props) => (
         <header className="Toolbar">
             <Logo />
             <SideDrawerToggler clicked = {props.toggleHandler}/>
+            
         </header>
 );
 
