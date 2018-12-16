@@ -16,6 +16,15 @@ const reducer = (state = INITITAL_STATE, action) => {
       return authSuccess(state, action);
     case actionTypes.AUTH_FAIL:
       return authFail(state, action);
+    case actionTypes.LOGOUT:
+      return {
+        ...state,
+        token: null,
+        userId: null,
+        error: null,
+        loading: false,
+        isAuthenticated : false
+      }
     default:
       return state;
   }

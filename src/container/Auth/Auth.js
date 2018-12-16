@@ -14,8 +14,8 @@ export class Auth extends Component {
             isSignup:false
         }
       
-        this.isAuthenticated = ()=>{
-            if(this.props.isAuthenticated){
+        this.isAuthenticated = (isAuthenticated)=>{
+            if(isAuthenticated){
                 this.props.history.push("/burgerBuilder");
             }
         }
@@ -27,16 +27,21 @@ export class Auth extends Component {
             })
         }
         onSubmit = (values)=>{
-            console.log(values);
+            console.log(values); 
             this.props.onAuth(values.email,values.password,this.state.isSignup, this.isAuthenticated);
         }
+        
     }
- 
-  render() {
-    const { errors ,touched } = this.props;
-    const errorClassName = 'text-left text-danger text-uppercase';
-    let spinner = <Spinner />;
-    let form = (  
+
+    componentDidMount(){
+        this.props.onTryAutoSignUp(this.isAuthenticated);
+
+    }
+    render() {
+        const { errors ,touched } = this.props;
+        const errorClassName = 'text-left text-danger text-uppercase';
+        let spinner = <Spinner />;
+        let form = (  
             <div className="card mr-auto ml-auto" style={{width: '60%',marginTop:'6rem'}}>
                 <div className="card-header">
                     Sign Up
@@ -69,7 +74,8 @@ const mapStateToProps=(state)=>{
 }
 const mapDispatchToProps = dispatch => {
     return {
-      onAuth: (email,password, isSignup ,isAuthenticated) => dispatch(actions.auth(email,password,isSignup ,isAuthenticated))
+      onAuth: (email,password, isSignup ,isAuthenticated) => dispatch(actions.auth(email,password,isSignup ,isAuthenticated)),
+      onTryAutoSignUp : (isAuthenticated) => dispatch(actions.tryAutoSignUp(isAuthenticated))
     };
 };
 

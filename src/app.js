@@ -7,6 +7,7 @@ import BurgerBuilder from "./container/BurgerBuilder/BurgerBuilder";
 import Orders from "./container/Orders/Orders";
 import Auth from "./container/Auth/Auth";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import Logout from "./container/Logout/Logout";
 
 const App = () => (
   <Layout className="container" id="app">
@@ -14,6 +15,7 @@ const App = () => (
       <ProtectedRoute path="/burgerBuilder" exact component={BurgerBuilder} />
       <ProtectedRoute path="/checkout" component={Checkout} />
       <ProtectedRoute path="/orders" component={Orders} />
+      <Route path="/logout" component={Logout} />
       <Route path="/" component={Auth} />
     </Switch>
   </Layout>

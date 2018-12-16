@@ -1,4 +1,5 @@
 .Toolbar{
+    display: flex;
     width: 100%;
     height: 3.5rem;
     position: fixed;
@@ -7,9 +8,26 @@
     z-index: 90;
     box-shadow: 0 10px 6px -6px #777;
     background-color: lighten($primary-color,5%);
-    display: flex;
     align-items:center;
+    align-items: stretch;
+    flex-basis: 7%;
 
+    &__Orders{
+        color:white;
+        transition:all 0.2s;
+        background-color:lighten($primary-color,5%);
+        display:flex;
+        align-items: center;
+        padding: 0.5rem;
+        span{
+            font-size: 1rem;
+        }
+        &:hover{
+            background-color:$primary-color;
+            text-decoration: none;
+            color:white;
+        }
+    }
     &::after{
         margin-bottom: 4rem;
     }
